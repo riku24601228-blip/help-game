@@ -1,8 +1,6 @@
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UIElements;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
