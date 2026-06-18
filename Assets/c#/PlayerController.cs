@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
-    private float moveSpeed = 5f;
-    private float jumpForce = 10f;
+    public float moveSpeed = 5f;
+    public float jumpForce = 10f;
     private Transform groundCheck;
     private float groundCheckRadius = 0.2f;
-    private LayerMask groundLayer;
+    public LayerMask groundLayer;
     private float fallThreshold = -10f;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
