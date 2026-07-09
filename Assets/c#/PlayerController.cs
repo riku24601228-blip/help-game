@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    public float moveSpeed = 3f;
+    public float jumpForce = 9f;
     private Transform groundCheck;
     private float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
