@@ -7,6 +7,7 @@ TagManager:
   - harinezumi
   - Enemy
   - Key
+  - Item
   layers:
   - Default
   - TransparentFX
