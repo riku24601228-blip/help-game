@@ -6,9 +6,9 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u30B8\u30E3\u30F3\u30D7\u53F0"
+  m_Name: "\u8EAB\u4F53\u306E\u6469\u64E6"
   serializedVersion: 2
-  friction: 0.4
-  bounciness: 2.5
-  m_FrictionCombine: 1
+  friction: 0
+  bounciness: 0
+  m_FrictionCombine: 4
   m_BounceCombine: 4
