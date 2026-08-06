@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    public Elevator elevator;
+    public Elevator[] elevators;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            elevator.SetMoveUp(true);
+            foreach (Elevator elevator in elevators)
+            {
+                elevator.SetMoveUp(true);
+            }
         }
     }
 
@@ -16,7 +19,10 @@ public class Switch : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            elevator.SetMoveUp(false);
+            foreach (Elevator elevator in elevators)
+            {
+                elevator.SetMoveUp(false);
+            }
         }
     }
 }
