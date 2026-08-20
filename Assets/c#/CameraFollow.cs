@@ -6,10 +6,10 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform target;
     private float smoothSpeed = 5f;
-    private Vector3 offset = new Vector3(0, 2, -10);
+    private Vector3 offset = new Vector3(3, 2, -10);
     private bool useBounds = true;
     private float minX = 0f;
-    private float maxX = 100f;
+    private float maxX = 500f;
     private float minY = 0f;
     private float maxY = 10f;
     void Start()
