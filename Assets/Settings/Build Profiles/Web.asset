@@ -23,12 +23,15 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Scene/TitleScene.unity
     m_guid: be715458e338c2247b83fb8a7c4a88b5
-  - m_enabled: 0
+  - m_enabled: 1
     m_path: Assets/Scene/GameScene.unity
     m_guid: 0a3383f0bfb18a04ba149de0a2282d99
-  - m_enabled: 0
+  - m_enabled: 1
     m_path: Assets/Scene/GameOverScene.unity
     m_guid: a835e73c061baec4dae5a1f036550d2e
+  - m_enabled: 1
+    m_path: Assets/Scene/GameClearScene.unity
+    m_guid: c8aab8fa497551044b95b45ba831e5d4
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:

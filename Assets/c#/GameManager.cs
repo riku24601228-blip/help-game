@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     private int itemCount = 0;
 
-    private int requiredItemCount = 3;
+    private int requiredItemCount = 1;
 
     void Awake()
     {
