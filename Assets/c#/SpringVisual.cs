@@ -39,6 +39,7 @@ public class SpringVisual : MonoBehaviour
         if (normalSprite != null)
         {
             spriteRenderer.sprite = normalSprite;
+
         }
     }
 
@@ -48,6 +49,7 @@ public class SpringVisual : MonoBehaviour
         {
             return;
         }
+
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
