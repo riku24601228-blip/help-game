@@ -6,6 +6,10 @@ public class SpringVisual : MonoBehaviour
     public Sprite normalSprite;
     public Sprite pressedSprite;
 
+    // ばねの音
+    public AudioClip springSound;
+    private AudioSource audioSource;
+
     // どのくらい近づいたら反応するか
     public float triggerDistance = 1.0f;
 
@@ -24,6 +28,13 @@ public class SpringVisual : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalPosition = transform.localPosition;
+
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
         if (normalSprite != null)
         {
@@ -80,6 +91,12 @@ public class SpringVisual : MonoBehaviour
         isPressed = true;
 
         Debug.Log("ばねが近くに反応した！");
+
+        // ばねの音
+        if (springSound != null)
+        {
+            audioSource.PlayOneShot(springSound);
+        }
 
         // 押された画像
         if (pressedSprite != null)

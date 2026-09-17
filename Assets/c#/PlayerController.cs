@@ -1,9 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public float jumpForce = 9f;
+
+    public AudioClip jumpSound;
+    private AudioSource audioSource;
+
     private Transform groundCheck;
     private float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
@@ -11,17 +16,26 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private bool isGrounded = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Update()
     {
-        if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameManager.GameState.Playing)
+        if (GameManager.Instance != null &&
+            GameManager.Instance.CurrentState != GameManager.GameState.Playing)
         {
             return;
         }
@@ -36,7 +50,11 @@ public class PlayerController : MonoBehaviour
     {
         if (groundCheck != null)
         {
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            isGrounded = Physics2D.OverlapCircle(
+                groundCheck.position,
+                groundCheckRadius,
+                groundLayer
+            );
         }
         else
         {
@@ -47,6 +65,7 @@ public class PlayerController : MonoBehaviour
             );
         }
     }
+
     private void HandleMovement()
     {
         float horizontal = 0f;
@@ -63,7 +82,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        rb.linearVelocity = new Vector2(horizontal * moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(
+            horizontal * moveSpeed,
+            rb.linearVelocity.y
+        );
 
         if (horizontal != 0 && spriteRenderer != null)
         {
@@ -73,9 +95,19 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Keyboard.current != null && Keyboard.current.upArrowKey.wasPressedThisFrame && isGrounded)
+        if (Keyboard.current != null &&
+            Keyboard.current.upArrowKey.wasPressedThisFrame &&
+            isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                jumpForce
+            );
+
+            if (jumpSound != null)
+            {
+                audioSource.PlayOneShot(jumpSound);
+            }
         }
     }
 
@@ -94,13 +126,13 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-
             if (GameManager.Instance != null)
             {
                 GameManager.Instance.GameOver();
             }
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Item"))
@@ -109,13 +141,22 @@ public class PlayerController : MonoBehaviour
             {
                 GameManager.Instance.CollectItem();
             }
+
             Destroy(other.gameObject);
         }
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Vector3 checkPos = groundCheck != null ? groundCheck.position : transform.position + Vector3.down * 0.5f;
-        Gizmos.DrawWireSphere(checkPos, groundCheckRadius);
+
+        Vector3 checkPos = groundCheck != null
+            ? groundCheck.position
+            : transform.position + Vector3.down * 0.5f;
+
+        Gizmos.DrawWireSphere(
+            checkPos,
+            groundCheckRadius
+        );
     }
 }
